@@ -113,3 +113,32 @@ exports.signupUser = async (req, res) => {
         });
     }
 };
+
+//*******delete user********
+exports.deleteUser = async (req, res) =>{
+    try {
+        const userID = req.user.id || req.params['id'];
+        if(!userID){
+            return res.status(400).json({
+                success:false,
+                message:"ID did not fetch"
+            })
+        }
+
+        const query = "DELETE FROM users WHERE user_id = $1";
+        const values = [userID];
+        await pool.query(query, values);
+
+        return res.status(200).json({
+            success:true,
+            message:"User deleted"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:"Error in Deleting user",
+            error
+        })
+    }
+}
