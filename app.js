@@ -7,5 +7,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 //********routes**********
+const authrouter = require('./routes/auth.route');
+
+app.use('/api/v1', authrouter);
 
 module.exports = app;
