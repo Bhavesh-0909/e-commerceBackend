@@ -33,7 +33,7 @@ exports.auth = (req, res, next)=>{
 exports.isConsumer = (req, res, next)=>{
     try {
 
-        const accountType = req.user.role;
+        const accountType = req.user.accountType;
 
         if(accountType !== "Consumer") {
             return res.status(402).json({
@@ -55,7 +55,7 @@ exports.isConsumer = (req, res, next)=>{
 exports.isProducer = (req, res, next)=>{
     try {
 
-        const accountType = req.user.role;
+        const accountType = req.user.accountType;
 
         if(accountType !== "Producer") {
             return res.status(402).json({
@@ -77,7 +77,7 @@ exports.isProducer = (req, res, next)=>{
 exports.isAdmin = (req, res, next)=>{
     try {
 
-        const accountType = req.user.role;
+        const accountType = req.user.accountType;
 
         if(accountType !== "Admin") {
             return res.status(402).json({
