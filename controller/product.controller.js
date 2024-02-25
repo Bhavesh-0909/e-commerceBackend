@@ -18,7 +18,7 @@ exports.createProduct = async (req, res) => {
         return res.status(200).json({
             success:true,
             message:"Product created",
-            product: product.rows
+            product: product.rows[0]
         })
     } catch (error) {
         return res.status(500).json({
@@ -77,7 +77,7 @@ exports.getDetailsOfProduct = async (req, res) => {
         return res.status(200).json({
             success:true,
             message:"All details of product",
-            product:product.rows[0]
+            product:product.rows
         })
     } catch (error) {
         return res.status(500).json({
@@ -107,7 +107,6 @@ exports.updatingProduct = async (req, res) => {
         return res.status(200).json({
             success:true,
             message:"Product details updated",
-            product:updatedProduct.rows[0]
         })
     } catch (error) {
         return res.status(500).json({

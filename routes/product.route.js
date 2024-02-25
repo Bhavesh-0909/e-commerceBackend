@@ -10,7 +10,7 @@ const {auth, isProducer} = require('../middleware/auth.middleware')
 router.post('/create/product', auth, isProducer, createProduct);
 router.get('/getallproducts/:id', auth, getAllProduct);
 router.get('/get/product/:id', auth, getDetailsOfProduct);
-router.put('/create/product/:id', auth, isProducer, updatingProduct);
+router.put('/update/product/:id', auth, isProducer, updatingProduct);
 router.delete('/delete/product/:id', auth, isProducer, deleteProduct);
 
 module.exports = router;

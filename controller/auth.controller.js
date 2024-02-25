@@ -18,7 +18,7 @@ exports.loginUser = async (req, res) => {
         const query = "SELECT * FROM users WHERE email = $1";
         const values = [email];
         const user = await pool.query(query, values);
-        console.log(user.rows);
+        
         if (user.rows.length === 0) {
             return res.status(400).json({
                 success:false,
@@ -105,7 +105,7 @@ exports.signupUser = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
+        
         return res.status(400).json({
             success: false,
             message: "Signup failed",
@@ -117,7 +117,7 @@ exports.signupUser = async (req, res) => {
 //*******delete user********
 exports.deleteUser = async (req, res) =>{
     try {
-        const userID = req.user.id || req.params['id'];
+        const userID = req.user.id || req.params.id;
         if(!userID){
             return res.status(400).json({
                 success:false,

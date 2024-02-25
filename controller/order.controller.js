@@ -6,7 +6,7 @@ exports.createOrder = async (req, res) =>{
     try {
         const productID = req.params.id;
         const userID = req.user.id;
-        if(!userID || !product_id || !quantity){
+        if(!userID || !productID || !quantity){
             return res.status(400).json({
                 success:false,
                 message:"Details not found"

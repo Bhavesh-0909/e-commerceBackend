@@ -37,9 +37,9 @@ exports.insertProductInCart = async (req, res) => {
             })
         }
 
-        const total_price = quantity * price
+        const total_price = quantity * price;
 
-        const query = "INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES ($1, $2, $3, $4)";
+        const query = "INSERT INTO cart(user_id, product_id, quantity, total_price) VALUES ($1, $2, $3, $4);";
         const values = [userID, productID, quantity, total_price];
         const cart = await pool.query(query, values);
 

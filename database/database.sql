@@ -42,9 +42,9 @@ CREATE TABLE order_desc (
 
 CREATE TABLE cart (
     cart_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-    product_id INT REFERENCES products(product_id) ON DELETE CASCADE,
+    user_id INT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+    product_id INT NOT NULL REFERENCES products(product_id) ON DELETE CASCADE,
     quantity INT NOT NULL DEFAULT 1,
-    total_price DECIMAL(10, 2) NOT NULL,
+    total_price INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
