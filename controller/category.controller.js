@@ -53,7 +53,7 @@ exports.getAllCategory = async (req, res) => {
 //*********Delete a Category********
 exports.deleteCategory = async (req, res) => {
     try {
-        const categoryID = req.params;
+        const categoryID = req.params.id;
         if(!categoryID){
             return res.status(400).json({
                 success: false,

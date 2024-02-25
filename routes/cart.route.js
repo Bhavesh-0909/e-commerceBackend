@@ -8,8 +8,8 @@ const {insertProductInCart, removeProductFromCart, updateCart, getAllProducts} =
 const {auth, isConsumer} = require('../middleware/auth.middleware')
 
 router.get('/cart', auth, isConsumer, getAllProducts);
-router.post('/insert', auth, isConsumer, insertProductInCart);
+router.post('/insert/cart/:id', auth, isConsumer, insertProductInCart);
 router.delete('/remove/:id', auth, isConsumer, removeProductFromCart);
-router.put('/update/cart', auth, isConsumer, updateCart)
+router.put('/update/cart/:id', auth, isConsumer, updateCart)
 
 module.exports = router;

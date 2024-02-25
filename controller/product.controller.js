@@ -32,7 +32,7 @@ exports.createProduct = async (req, res) => {
 //get all product from category ID
 exports.getAllProduct = async (req, res) => {
     try {
-        const categoryID = req.params;
+        const categoryID = req.params.id;
         if(!categoryID){
             return res.status.json({
                 success:false,
@@ -61,7 +61,7 @@ exports.getAllProduct = async (req, res) => {
 //get all details of product by Id
 exports.getDetailsOfProduct = async (req, res) => {
     try {
-        const productID = req.params;
+        const productID = req.params.id;
         if(!productID){
             return res.status(400).json({
                 success:false,
@@ -91,7 +91,8 @@ exports.getDetailsOfProduct = async (req, res) => {
 //updating stock of product 
 exports.updatingProduct = async (req, res) => {
     try {
-        const {stock , productID} = req.body;
+        const productID = req.params.id;
+        const {stock} = req.body;
         if(!stock || !productID){
             return res.status(400).json({
                 success:false,
@@ -120,7 +121,7 @@ exports.updatingProduct = async (req, res) => {
 //delete a product from ID
 exports.deleteProduct = async (req, res) => {
     try {
-        const {productID} = req.body;
+        const productID = req.params.id;
         if(!productID){
             return res.status(400).json({
                 success:false,

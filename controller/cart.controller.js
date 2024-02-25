@@ -27,7 +27,8 @@ exports.getAllProducts = async (req, res) => {
 //insert product in cart
 exports.insertProductInCart = async (req, res) => {
     try {
-        const {productID, quantity, price} = req.body;
+        const productID = req.params.id
+        const {quantity, price} = req.body;
         const userID = req.user.id;
         if(!productID || !quantity || !userID || !price){
             return res.status(400).json({
@@ -59,7 +60,7 @@ exports.insertProductInCart = async (req, res) => {
 //remove product from cart
 exports.removeProductFromCart = async (req, res) => {
     try {
-        const cartID = req.params;
+        const cartID = req.params.id;
         if(!cartID){
             return res.status(400).json({
                 success:false,
@@ -87,7 +88,8 @@ exports.removeProductFromCart = async (req, res) => {
 //updating product quantity in cart 
 exports.updateCart = async (req, res) => {
     try {
-        const {productID, quantity, price} = req.body;
+        const productID = req.params.id
+        const {quantity, price} = req.body;
         const userID = req.user.id;
         if(!productID || !quantity || !userID){
             return res.status(400).json({

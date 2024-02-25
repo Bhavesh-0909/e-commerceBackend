@@ -4,7 +4,7 @@ const pool = require('../database/pg.databse')
 //create a product
 exports.createOrder = async (req, res) =>{
     try {
-        const productID = req.param;
+        const productID = req.params.id;
         const userID = req.user.id;
         if(!userID || !product_id || !quantity){
             return res.status(400).json({
@@ -78,7 +78,7 @@ exports.getOrderHistory = async (req, res) => {
 //get order desc by order id
 exports.getOrder = async (req, res) => {
     try {
-        const orderID = req.param;
+        const orderID = req.params.id;
         if(!orderID){
             return res.status(400).json({
                 success:false,
@@ -108,7 +108,7 @@ exports.getOrder = async (req, res) => {
 exports.updateOrder = async (req, res) => {
     try {
         const {order_status} = req.body
-        const orderID = req.param;
+        const orderID = req.params.id;
         if(!orderID){
             return res.status(400).json({
                 success:false,
@@ -137,7 +137,7 @@ exports.updateOrder = async (req, res) => {
 //delete order
 exports.deleteOrder = async (req, res) => {
     try {
-        const orderID = req.param;
+        const orderID = req.params.id;
         if(!orderID){
             return res.status(400).json({
                 success:false,

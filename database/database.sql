@@ -1,4 +1,4 @@
-CREATE DATABASE e_commerce;
+CREATE DATABASE e_commerce_website;
 
 CREATE TYPE account_type AS ENUM ('Consumer', 'Producer', 'Admin');
 CREATE TYPE order_status AS ENUM ('Processing', 'Delivered', 'Canceled', 'Refunded');
