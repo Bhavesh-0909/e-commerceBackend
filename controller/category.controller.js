@@ -61,7 +61,7 @@ exports.deleteCategory = async (req, res) => {
             })
         }
 
-        const query = "DELETE FROM categories WHERE id = $1"
+        const query = "DELETE FROM categories WHERE category_id = $1"
         const values =[categoryID];
 
         await pool.query(query, values);

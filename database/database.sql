@@ -43,7 +43,7 @@ CREATE TABLE order_desc (
 CREATE TABLE cart (
     cart_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-    product_id INT REFERENCES products(product_id),
-    quantity INT NOT NULL,
+    product_id INT REFERENCES products(product_id) ON DELETE CASCADE,
+    quantity INT NOT NULL DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
