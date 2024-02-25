@@ -21,12 +21,12 @@ CREATE TABLE categories (
 
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
-    seller_id INT REFERENCES users(user_id),
+    seller_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     product_name VARCHAR(100) NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     product_description TEXT,
     stock INT NOT NULL DEFAULT 0,
-    category_id INT REFERENCES categories(category_id),
+    category_id INT REFERENCES categories(category_id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE order_desc (
 
 CREATE TABLE cart (
     cart_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
+    user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     product_id INT REFERENCES products(product_id),
     quantity INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -30,7 +30,7 @@ exports.createCategory = async(req, res) => {
 }
 
 //*******get all category**********
-exports.getAllCategory = async(req, res) => {
+exports.getAllCategory = async (req, res) => {
     try {
         
         const query = "SELECT category_id, category_name FROM categories";
@@ -45,6 +45,36 @@ exports.getAllCategory = async(req, res) => {
         return res.status(500).json({
             success:false,
             message:"Error in geting all category",
+            error
+        })
+    }
+}
+
+//*********Delete a Category********
+exports.deleteCategory = async (req, res) => {
+    try {
+        const categoryID = req.params;
+        if(!categoryID){
+            return res.status(400).json({
+                success: false,
+                message:"Category Id not found"
+            })
+        }
+
+        const query = "DELETE FROM categories WHERE id = $1"
+        const values =[categoryID];
+
+        await pool.query(query, values);
+
+        return res.status(200).json({
+            success:true,
+            message:"Category deleted"
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message:"Error in Delete category",
             error
         })
     }
