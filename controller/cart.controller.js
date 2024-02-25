@@ -27,17 +27,19 @@ exports.getAllProducts = async (req, res) => {
 //insert product in cart
 exports.insertProductInCart = async (req, res) => {
     try {
-        const {productID, quantity} = req.body;
+        const {productID, quantity, price} = req.body;
         const userID = req.user.id;
-        if(!productID || !quantity || !userID){
+        if(!productID || !quantity || !userID || !price){
             return res.status(400).json({
                 success:false,
                 message:"Fill all the details"
             })
         }
 
-        const query = "INSERT INTO cart (user_id, product_id, quantity) VALUES ($1, $2, $3)";
-        const values = [userID, productID, quantity];
+        const total_price = quantity * price
+
+        const query = "INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES ($1, $2, $3, $4)";
+        const values = [userID, productID, quantity, total_price];
         const cart = await pool.query(query, values);
 
         return res.status(200).json({
@@ -85,7 +87,7 @@ exports.removeProductFromCart = async (req, res) => {
 //updating product quantity in cart 
 exports.updateCart = async (req, res) => {
     try {
-        const {productID, quantity} = req.body;
+        const {productID, quantity, price} = req.body;
         const userID = req.user.id;
         if(!productID || !quantity || !userID){
             return res.status(400).json({
@@ -94,8 +96,10 @@ exports.updateCart = async (req, res) => {
             })
         }
 
-        const query = "UPDATE cart SET quantity = $1 WHERE user_id = $2 AND product_id = $3";
-        const values = [quantity, userID, productID];
+        const total_price = quantity * price;
+
+        const query = "UPDATE cart SET quantity = $1, total_price = $2 WHERE user_id = $3 AND product_id = $4";
+        const values = [quantity, total_price, userID, productID];
         const updateCart = await pool.query(query, values);
 
         return res.status(200).json({
