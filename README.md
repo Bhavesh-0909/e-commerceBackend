@@ -19,7 +19,7 @@ This repository contains the backend code for an E-Commerce application built wi
 
 1. Fork and clone this repository.
    ```bash
-   git clone https://github.com/Bhavesh0909/e-commerceBackend.git
+   git clone https://github.com/Bhavesh-0909/e-commerceBackend.git
    
 2. Install dependencies:
    ```bash
